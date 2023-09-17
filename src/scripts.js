@@ -8,18 +8,16 @@ function generateUniqueId() {
 };
 
 function addEntry(){
-    console.log("Called add entry");
+    // console.log("Called add entry");
     var form = document.forms.entryForm;
     var div = document.createElement('div');
     const id = generateUniqueId();
     div.setAttribute("id", `entry_${id}`);
-    div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text"> <button onclick="deleteEntry(entry_${id})">Delete</button>`;
+    div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text"> <button onclick="deleteEntry(entry_${id})">Delete</button>`;
     form.appendChild(div);
 }
 function deleteEntry(element){
-    console.log(element);
-    // console.log(`Remove element ${id}`);
-    // const element = document.getElementById(id);
+    // console.log(element);
     element.remove();
 
 }
@@ -27,5 +25,5 @@ function save(){
     event.preventDefault(); 
     var formEl = document.forms.entryForm;
     var formData = new FormData(formEl);
-    console.log(Object.fromEntries(formData));
+    // console.log(Object.fromEntries(formData));
 }

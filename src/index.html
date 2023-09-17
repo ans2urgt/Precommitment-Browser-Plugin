@@ -3,18 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Precommitment</title>
 </head>
 <body>
-    This plugin will help you set and remind your precommitments when you visit a website
+    <div style="width: 600px;">
+        This plugin will help you set and remind your precommitments when you visit a website
     <h2>Current Precommitments</h2>
     <button id="addEntry">Add Precommitment</button>
     <div>
         <form action="" id="entryForm">
+            <div id="entry_1">
+                <label for="link_example_1">Link:</label> 
+                <input placeholder="reddit.com" name="link_example_1" type="text">
+                <label for="link_message_1"> Message: </label>
+                <input class="link-input" placeholder="I pledge only to read 1 post on Reddit" name="link_message_1" type="text"> 
+                <button onclick="deleteEntry(entry_1)">Delete</button>
+            </div>
+            <div id="entry_2">
+                <label for="link_example_2">Link:</label> 
+                <input placeholder="youtube.com" name="link_example_2" type="text">
+                <label for="link_message_2"> Message: </label>
+                <input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="link_message_2" type="text"> 
+                <button onclick="deleteEntry(entry_2)">Delete</button>
+            </div>
             <button id="saveEntries">Save</button>
         </form>
     </div>
-    
+    </div>
 </body>
 <script src="scripts.js"></script>
 </html>
