@@ -31,21 +31,24 @@ window.onload = async function() {
     const entries = data['entries'];
     var form = document.forms.entryForm;
     if (entries){
-        entries.forEach((entry, index, array)=> {
-            // for each entry object in entry
-            // get link id, link text, message_id, and message text
-            // create div
-            // set div innerhtml
-            // add div to form
+        for (const link in entries){
             var div = document.createElement('div');
-            div.innerHTML = `<label for="${entry.linkId}">Link:</label> <input value="${entry.link}" name="${entry.linkId}" type="text"><label for="${entry.messageId}"> Message: </label><input class="link-input" value="${entry.message}" name="${entry.messageId}" type="text"> <button onclick="deleteEntry(this)">Delete</button>`;
+            div.innerHTML = `<label for="${entries[link].linkId}">Link:</label> <input value="${link}" name="${entries[link].linkId}" type="text"><label for="${entries[link].messageId}"> Message: </label><input class="link-input" value="${entries[link].message}" name="${entries[link].messageId}" type="text">`;
+            var deleteEntryButton = document.createElement('button')
+            deleteEntryButton.textContent = 'Delete'
+            deleteEntryButton.addEventListener("click", deleteEntry);
+            div.appendChild(deleteEntryButton)
             form.appendChild(div);
 
-        });        
+        }       
     } else {
         var div = document.createElement('div');
         const id = generateUniqueId();
-        div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text"> <button onclick="deleteEntry(this)">Delete</button>`;
+        div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text">`;
+        var deleteEntryButton = document.createElement('button')
+        deleteEntryButton.textContent = 'Delete'
+        deleteEntryButton.addEventListener("click", deleteEntry);
+        div.appendChild(deleteEntryButton)
         form.appendChild(div);
     }
 
@@ -66,13 +69,18 @@ function addEntry(){
     var form = document.forms.entryForm;
     var div = document.createElement('div');
     const id = generateUniqueId();
-    div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text"> <button onclick="deleteEntry(this)">Delete</button>`;
+    div.innerHTML = `<label for="link_${id}">Link:</label> <input placeholder="youtube.com" name="link_${id}" type="text"><label for="message_${id}"> Message: </label><input class="link-input" placeholder="I pledge to only watch youtube for 10 minutes" name="message_${id}" type="text">`;
+    var deleteEntryButton = document.createElement('button')
+    deleteEntryButton.textContent = 'Delete'
+    deleteEntryButton.addEventListener("click", deleteEntry);
+    div.appendChild(deleteEntryButton)
     form.appendChild(div);
 }
 function deleteEntry(element){
-    // console.log(element);
-    element.remove();
-
+    // let text = "Do you want to delete this precommitment?";
+    // if (confirm(text) == true) {
+        element.target.parentNode.remove();   
+    // }
 }
 async function save(){
     console.log("Save clicked")
@@ -82,15 +90,14 @@ async function save(){
     // console.log(formData);
     const entries = Object.fromEntries(formData);
     const keys = Object.keys(entries)
-    const savedEntries = []
+    const savedEntries = {};
     for (let i = 0; i < keys.length - 1; i+=2){
         const entry = {
             linkId: keys[i],
-            link: entries[keys[i]],
             messageId: keys[i+1],
             message: entries[keys[i+1]]
         }
-        savedEntries.push(entry);
+        savedEntries[entries[keys[i]]] = entry;
     }
     // chrome.storage.local.set({'entries': savedEntries});
     // await chrome.storage.local.set({ name: "David", color: "green" });
