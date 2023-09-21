@@ -51,9 +51,6 @@ window.onload = async function() {
         div.appendChild(deleteEntryButton)
         form.appendChild(div);
     }
-
-
-
    }
 
 
@@ -77,10 +74,10 @@ function addEntry(){
     form.appendChild(div);
 }
 function deleteEntry(element){
-    // let text = "Do you want to delete this precommitment?";
-    // if (confirm(text) == true) {
+    let text = "Do you want to delete this precommitment?";
+    if (confirm(text) == true) {
         element.target.parentNode.remove();   
-    // }
+    }
 }
 async function save(){
     console.log("Save clicked")
@@ -97,7 +94,7 @@ async function save(){
             messageId: keys[i+1],
             message: entries[keys[i+1]]
         }
-        savedEntries[entries[keys[i]]] = entry;
+        savedEntries[entries[keys[i]].toLowerCase()] = entry;
     }
     // chrome.storage.local.set({'entries': savedEntries});
     // await chrome.storage.local.set({ name: "David", color: "green" });
