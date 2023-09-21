@@ -1,12 +1,12 @@
 {
-    "name": "Precommitment",
+    "name": "Precommitments",
     "version": "1.0.0",
     "description": "This plugin will help you set and remind your precommitments when you visit a website",
     "manifest_version": 3,
     "author": "ans2urgt",
     "action":{
         "default_popup": "src/index.html",
-        "default_title": "Precommitment"
+        "default_title": "Precommitments"
     },
     "permissions": [
         "storage",
