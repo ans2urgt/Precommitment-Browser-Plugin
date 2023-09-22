@@ -62,7 +62,6 @@ function generateUniqueId() {
 };
 
 function addEntry(){
-    // console.log("Called add entry");
     var form = document.forms.entryForm;
     var div = document.createElement('div');
     const id = generateUniqueId();
@@ -76,15 +75,14 @@ function addEntry(){
 function deleteEntry(element){
     let text = "Do you want to delete this precommitment?";
     if (confirm(text) == true) {
-        element.target.parentNode.remove();   
+        element.target.parentNode.remove();
+        save();
     }
 }
 async function save(){
-    console.log("Save clicked")
     event.preventDefault(); 
     var formEl = document.forms.entryForm;
     var formData = new FormData(formEl);
-    // console.log(formData);
     const entries = Object.fromEntries(formData);
     const keys = Object.keys(entries)
     const savedEntries = {};
