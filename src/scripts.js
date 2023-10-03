@@ -94,8 +94,6 @@ async function save(){
         }
         savedEntries[entries[keys[i]].toLowerCase()] = entry;
     }
-    // chrome.storage.local.set({'entries': savedEntries});
-    // await chrome.storage.local.set({ name: "David", color: "green" });
     await chrome.storage.local.set({'entries': savedEntries});
 
 

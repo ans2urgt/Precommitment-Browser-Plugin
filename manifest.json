@@ -1,6 +1,6 @@
 {
     "name": "Precommitments",
-    "version": "1.0.0",
+    "version": "1.0.4",
     "description": "This plugin will help you set and remind your precommitments when you visit a website",
     "manifest_version": 3,
     "author": "ans2urgt",
@@ -11,16 +11,15 @@
     "permissions": [
         "storage",
         "notifications",
-        "activeTab", 
         "tabs"
     ],
     "background": {
         "service_worker": "src/service-worker.js"
     },
     "icons": {
-        "16": "/5590.png",
-        "32": "/5590.png",
-        "48": "/5590.png",
-        "128": "/5590.png"
+        "16": "5590_16.png",
+        "32": "5590_32.png",
+        "48": "5590_48.png",
+        "128": "5590_128.png"
       }
 }
